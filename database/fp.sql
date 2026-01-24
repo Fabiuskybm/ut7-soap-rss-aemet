@@ -3,6 +3,9 @@
 -- |  BASE DE DATOS  |
 -- ===================
 
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
 USE fp_db;
 
 

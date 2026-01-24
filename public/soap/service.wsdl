@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="urn:fpsoap"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="urn:fpsoap"
+    name="FpSoapService"
+>
+
+    <types>
+        <xsd:schema
+            targetNamespace="urn:fpsoap"
+            xmlns:tns="urn:fpsoap"
+            elementFormDefault="qualified">
+        
+            <xsd:element name="infoModulo">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="infoModuloResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="infoModuloInput">
+        <part name="parameters" element="tns:infoModulo"/>
+    </message>
+
+    <message name="infoModuloOutput">
+        <part name="parameters" element="tns:infoModuloResponse"/>
+    </message>
+
+    <portType name="FpSoapPortType">
+        <operation name="infoModulo">
+            <input message="tns:infoModuloInput"/>
+            <output message="tns:infoModuloOutput"/>
+        </operation>
+    </portType>
+
+    <binding name="FpSoapBinding" type="tns:FpSoapPortType">
+
+        <soap:binding 
+            style="document" 
+            transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="infoModulo">
+            <soap:operation soapAction=""/>
+
+            <input>
+                <soap:body use="literal"/>
+            </input>
+
+            <output>
+                <soap:body use="literal"/>
+            </output>
+
+        </operation>
+    </binding>
+
+    <service name="FpSoapService">
+        <port name="FpSoapPort" binding="tns:FpSoapBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+
+</definitions>
