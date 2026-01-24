@@ -1,0 +1,10 @@
+{
+  "name": "fabio/ut7-soap-rss-aemet",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {}
+}
