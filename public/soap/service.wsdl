@@ -9,12 +9,19 @@
     name="FpSoapService"
 >
 
+
     <types>
         <xsd:schema
             targetNamespace="urn:fpsoap"
             xmlns:tns="urn:fpsoap"
             elementFormDefault="qualified">
         
+
+            <!-- ====================== -->
+            <!-- |  Tipos SOAP (XSD)  | -->
+            <!-- ====================== -->
+
+            <!-- infoModulo -->
             <xsd:element name="infoModulo">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -30,9 +37,41 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+
+
+            <!-- infoDepartamentos -->
+            <xsd:element name="infoDepartamentos"/>
+
+            <xsd:element name="infoDepartamentosResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+
+            <!-- infoNomenclaturas -->
+            <xsd:element name="infoNomenclaturas"/>
+
+            <xsd:element name="infoNomenclaturasResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
         </xsd:schema>
     </types>
 
+
+
+    <!-- =================== -->
+    <!-- |  Mensajes SOAP  | -->
+    <!-- =================== -->
+
+    <!-- infoModulo -->
     <message name="infoModuloInput">
         <part name="parameters" element="tns:infoModulo"/>
     </message>
@@ -41,12 +80,57 @@
         <part name="parameters" element="tns:infoModuloResponse"/>
     </message>
 
+
+    <!-- infoDepartamentos -->
+    <message name="infoDepartamentosInput">
+        <part name="parameters" element="tns:infoDepartamentos"/>
+    </message>
+
+    <message name="infoDepartamentosOutput">
+        <part name="parameters" element="tns:infoDepartamentosResponse"/>
+    </message>
+
+
+    <!-- infoNomenclaturas -->
+    <message name="infoNomenclaturasInput">
+        <part name="parameters" element="tns:infoNomenclaturas"/>
+    </message>
+
+    <message name="infoNomenclaturasOutput">
+        <part name="parameters" element="tns:infoNomenclaturasResponse"/>
+    </message>
+
+
+
     <portType name="FpSoapPortType">
+
+        <!-- =================== -->
+        <!-- |  PortType SOAP  | -->
+        <!-- =================== -->
+
+        <!-- infoModulo -->
         <operation name="infoModulo">
             <input message="tns:infoModuloInput"/>
             <output message="tns:infoModuloOutput"/>
         </operation>
+
+
+        <!-- infoDepartamentos -->
+        <operation name="infoDepartamentos">
+            <input message="tns:infoDepartamentosInput"/>
+            <output message="tns:infoDepartamentosOutput"/>
+        </operation>
+
+
+        <!-- infoNomenclaturas -->
+        <operation name="infoNomenclaturas">
+            <input message="tns:infoNomenclaturasInput"/>
+            <output message="tns:infoNomenclaturasOutput"/>
+        </operation>
+
+
     </portType>
+
 
     <binding name="FpSoapBinding" type="tns:FpSoapPortType">
 
@@ -54,19 +138,39 @@
             style="document" 
             transport="http://schemas.xmlsoap.org/soap/http"/>
 
+
+        <!-- ================== -->
+        <!-- |  Binding SOAP  | -->
+        <!-- ================== -->
+
+        <!-- infoModulo -->
         <operation name="infoModulo">
             <soap:operation soapAction=""/>
-
-            <input>
-                <soap:body use="literal"/>
-            </input>
-
-            <output>
-                <soap:body use="literal"/>
-            </output>
-
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
         </operation>
+
+        <!-- infoDepartamentos -->
+        <operation name="infoDepartamentos">
+            <soap:operation soapAction=""/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+        <!-- infoNomenclaturas -->
+        <operation name="infoNomenclaturas">
+            <soap:operation soapAction=""/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
     </binding>
+
+
+
+    <!-- =================== -->
+    <!-- |  Servicio SOAP  | -->
+    <!-- =================== -->
 
     <service name="FpSoapService">
         <port name="FpSoapPort" binding="tns:FpSoapBinding">
