@@ -1,10 +1,50 @@
 
-<header class="header">
 
-    <h1 class="header__title">UT7 SOAP + RSS + AEMET</h1>
-    
-    <nav class="header__nav">
-        <a href="index.php?view=home">Inicio</a>
-    </nav>
-    
+<header class="header">
+	<div class="header__inner">
+		<div class="header__brand">
+			<a class="header__brand-link" href="index.php?view=home">
+				<span class="header__brand-title">UT7</span>
+				<span class="header__brand-subtitle">SOAP · RSS · AEMET</span>
+			</a>
+		</div>
+
+		<nav class="header__nav" aria-label="Navegación principal">
+            <a
+                class="header__nav-link <?= $view === 'home' ? 'header__nav-link--active' : '' ?>"
+                href="index.php?view=home"
+                <?= $view === 'home' ? 'aria-current="page"' : '' ?>
+            >
+                Inicio
+            </a>
+
+            <a
+                class="header__nav-link <?= $view === 'modules' ? 'header__nav-link--active' : '' ?>"
+                href="index.php?view=modules"
+                <?= $view === 'modules' ? 'aria-current="page"' : '' ?>
+            >
+                Módulos FP
+            </a>
+
+            <a
+                class="header__nav-link <?= $view === 'rss' ? 'header__nav-link--active' : '' ?>"
+                href="index.php?view=rss"
+                <?= $view === 'rss' ? 'aria-current="page"' : '' ?>
+            >
+                RSS
+            </a>
+
+            <a
+                class="header__nav-link <?= $view === 'aemet' ? 'header__nav-link--active' : '' ?>"
+                href="index.php?view=aemet"
+                <?= $view === 'aemet' ? 'aria-current="page"' : '' ?>
+            >
+                AEMET
+            </a>
+        </nav>
+
+		<div class="header__meta" aria-label="Información del proyecto">
+			<span class="header__chip">2º DAW</span>
+		</div>
+	</div>
 </header>

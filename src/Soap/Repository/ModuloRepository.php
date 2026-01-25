@@ -93,7 +93,6 @@ class ModuloRepository
                 curso,
                 nomenclatura_modulo
             FROM modulos
-            ORDER BY departamento, curso, nomenclatura_modulo
         ";
 
         $stmt = $this->db->prepare($sql);

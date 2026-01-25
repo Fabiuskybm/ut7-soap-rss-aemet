@@ -12,7 +12,7 @@ declare(strict_types=1);
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
-<body class="page">
+<body class="page page--<?= htmlspecialchars($view ?? 'home', ENT_QUOTES, 'UTF-8') ?>">
     <?php require __DIR__ . '/partials/header.php'; ?>
 
     <main class="page__main">
@@ -27,7 +27,7 @@ declare(strict_types=1);
 
     <?php require __DIR__ . '/partials/footer.php'; ?>
 
-    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 
 </html>
