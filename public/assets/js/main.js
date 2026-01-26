@@ -10,5 +10,12 @@ import { initModules } from "./modules/index.js";
 
 
 (() => {
-	initModules();
+	const body = document.body;
+
+	if (body.classList.contains("page--modules")) { initModules(); }
+
+	if (body.classList.contains("page--aemet")) {
+		import("./aemet/index.js").then(m => m.initAemet());
+	}
+	
 })();

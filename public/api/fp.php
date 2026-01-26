@@ -1,20 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . '/../../vendor/autoload.php';
-
-header('Content-Type: application/json; charset=utf-8');
-
-
-// ============================
-// |  Entrada / Validaciones  |
-// ============================
-
-$action = $_GET['action'] ?? null;
-
-if ($action === null) {
-    jsonError('Parámetro action obligatorio');
-}
+require __DIR__ . '/_bootstrap.php';
 
 
 
@@ -37,6 +24,8 @@ $client = new SoapClient($wsdl, [
 // ======================
 // |  Router del proxy  |
 // ======================
+
+$action = getActionOrFail();
 
 switch ($action) {
 
@@ -63,21 +52,4 @@ switch ($action) {
 
     default:
         jsonError('Acción no válida');
-}
-
-
-
-// ========================
-// |  HELPERS (internos)  |
-// ========================
-
-function jsonError(string $message, int $code = 400): void 
-{
-    http_response_code($code);
-
-    echo json_encode([
-        'ok' => false,
-        'error' => $message
-    ]);
-    exit;
 }

@@ -858,3 +858,373 @@ a {
 	padding: 0;
 	border-bottom: 0;
 }
+
+
+
+/*  
+	===================
+	|  AEMET (vista)  |
+	===================
+*/
+
+.aemet {
+	/* Ajusta el “color” solo dentro de AEMET sin tocar el resto */
+	--aemet-accent: var(--accent, #1e88e5);
+	--aemet-accent-soft: color-mix(in srgb, var(--aemet-accent) 14%, transparent);
+	--aemet-card: var(--color-surface, #fff);
+	--aemet-border: var(--color-border, rgba(0,0,0,.10));
+	--aemet-text: var(--color-text, #111827);
+	--aemet-muted: var(--color-muted, #6b7280);
+
+	display: grid;
+	gap: var(--space-6, 1.5rem);
+}
+
+.aemet__header {
+	display: grid;
+	gap: var(--space-2, .5rem);
+}
+
+.aemet__title {
+	margin: 0;
+	font-size: clamp(2rem, 2.5vw, 2.6rem);
+	letter-spacing: -0.02em;
+	line-height: 1.1;
+	color: var(--aemet-text);
+}
+
+.aemet__subtitle {
+	margin: 0;
+	color: var(--aemet-muted);
+	font-size: 1.05rem;
+}
+
+/* Botonera */
+.aemet__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-3, .75rem);
+	align-items: center;
+}
+
+.aemet__btn {
+	border: 1px solid color-mix(in srgb, var(--aemet-accent) 22%, var(--aemet-border));
+	background:
+		linear-gradient(180deg,
+			color-mix(in srgb, var(--aemet-accent) 10%, #fff),
+			#fff
+		);
+	color: var(--aemet-text);
+
+	padding: .85rem 1.05rem;
+	border-radius: 999px;
+
+	font-weight: 800;
+	font-size: .95rem;
+
+	cursor: pointer;
+	box-shadow: 0 10px 25px rgba(0,0,0,.06);
+	transition:
+		transform 140ms ease,
+		box-shadow 140ms ease,
+		background 140ms ease,
+		border-color 140ms ease;
+}
+
+.aemet__btn:hover {
+	transform: translateY(-1px);
+	border-color: color-mix(in srgb, var(--aemet-accent) 40%, var(--aemet-border));
+	box-shadow: 0 14px 32px rgba(0,0,0,.08);
+	background:
+		linear-gradient(180deg,
+			color-mix(in srgb, var(--aemet-accent) 14%, #fff),
+			#fff
+		);
+}
+
+.aemet__btn:active {
+	transform: translateY(0);
+}
+
+.aemet__btn:focus-visible {
+	outline: 3px solid var(--aemet-accent-soft);
+	outline-offset: 2px;
+}
+
+/* Panel: que NO parezca “otra card” */
+.aemet__panel {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+}
+
+.aemet__status {
+	margin: 0 0 var(--space-4, 1rem) 0;
+	padding: .75rem 1rem;
+
+	border-radius: var(--radius-md, .75rem);
+	border: 1px solid color-mix(in srgb, var(--aemet-accent) 24%, var(--aemet-border));
+	background: var(--aemet-accent-soft);
+	color: var(--aemet-text);
+
+	font-weight: 700;
+}
+
+.aemet__content {
+	display: grid;
+	gap: var(--space-4, 1rem);
+}
+
+/* Card principal */
+.aemet__card {
+	position: relative;
+	background: var(--aemet-card);
+	border: 1px solid var(--aemet-border);
+	border-radius: var(--radius-lg, 1.25rem);
+	box-shadow: 0 18px 40px rgba(0,0,0,.08);
+	padding: var(--space-6, 1.5rem);
+
+	display: grid;
+	gap: var(--space-5, 1.25rem);
+
+	overflow: hidden;
+}
+
+.aemet__card::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 6px;
+	background: linear-gradient(90deg,
+		color-mix(in srgb, var(--aemet-accent) 85%, #fff),
+		color-mix(in srgb, var(--aemet-accent) 55%, #fff)
+	);
+}
+
+.aemet__card-title {
+	margin: 0;
+	padding-top: .25rem;
+	font-size: 1.55rem;
+	font-weight: 900;
+	letter-spacing: -0.01em;
+	color: var(--aemet-text);
+}
+
+/* Texto estructurado */
+.aemet__text {
+	display: grid;
+	gap: .9rem;
+}
+
+/* ==========
+   META / CHIPS
+   ========== */
+
+.aemet__meta {
+	display: grid;
+	gap: .6rem;
+}
+
+.aemet__meta-subtitle {
+	margin: 0;
+	color: var(--aemet-muted);
+	font-size: 1.05rem;
+}
+
+.aemet__chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem; /* <- esto evita el “pegado” */
+	align-items: center;
+}
+
+.aemet__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: .4rem;
+
+	padding: .45rem .7rem;
+	border-radius: 999px;
+
+	background: color-mix(in srgb, var(--aemet-accent) 10%, #fff);
+	border: 1px solid color-mix(in srgb, var(--aemet-accent) 20%, var(--aemet-border));
+
+	color: var(--aemet-text);
+	font-weight: 750;
+	font-size: .9rem;
+	letter-spacing: .01em;
+}
+
+.aemet__valid {
+	display: inline-flex;
+	align-items: center;
+
+	width: fit-content;
+	padding: .55rem .85rem;
+	border-radius: 999px;
+
+	background: color-mix(in srgb, var(--aemet-accent) 85%, #fff);
+	color: #fff;
+
+	font-weight: 800;
+	font-size: .92rem;
+
+	box-shadow: 0 10px 22px rgba(0,0,0,.10);
+}
+
+/* Secciones */
+.aemet__section-title {
+	margin: 1.1rem 0 .25rem 0;
+	font-size: 1.05rem;
+	font-weight: 900;
+	letter-spacing: -0.01em;
+	color: var(--aemet-text);
+
+	background: color-mix(in srgb, var(--aemet-accent) 10%, transparent);
+	border: 1px solid color-mix(in srgb, var(--aemet-accent) 18%, var(--aemet-border));
+	padding: .6rem .8rem;
+	border-radius: var(--radius-md, .75rem);
+}
+
+.aemet__paragraph {
+	margin: 0;
+	color: var(--aemet-muted);
+	line-height: 1.75;
+	font-size: 1.02rem;
+}
+
+/* ==========
+   TEMPERATURAS (tarjeta)
+   ========== */
+
+.aemet__temps {
+	margin-top: .25rem;
+	border: 1px solid var(--aemet-border);
+	border-radius: var(--radius-lg, 1.1rem);
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 12px 26px rgba(0,0,0,.06);
+}
+
+.aemet__temps-head {
+	padding: .65rem .95rem;
+	font-weight: 900;
+	color: #fff;
+	background: linear-gradient(90deg,
+		color-mix(in srgb, var(--aemet-accent) 85%, #fff),
+		color-mix(in srgb, var(--aemet-accent) 55%, #fff)
+	);
+}
+
+.aemet__temps-list {
+	display: grid;
+}
+
+.aemet__temp-row {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: .75rem;
+	align-items: center;
+
+	padding: .9rem .95rem;
+	border-top: 1px solid var(--aemet-border);
+}
+
+.aemet__temp-place {
+	font-weight: 800;
+	color: var(--aemet-text);
+}
+
+.aemet__temp-minmax {
+	display: flex;
+	gap: .6rem;
+	align-items: center;
+}
+
+.aemet__temp-box {
+	min-width: 58px;
+	text-align: center;
+	padding: .45rem .55rem;
+	border-radius: .75rem;
+	border: 1px solid var(--aemet-border);
+	background: color-mix(in srgb, #000 2%, #fff);
+}
+
+.aemet__temp-box--min {
+	border-color: color-mix(in srgb, var(--aemet-accent) 22%, var(--aemet-border));
+}
+
+.aemet__temp-box--max {
+	border-color: color-mix(in srgb, #ff7a00 28%, var(--aemet-border));
+}
+
+.aemet__temp-label {
+	display: block;
+	font-size: .72rem;
+	color: var(--aemet-muted);
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.aemet__temp-value {
+	display: block;
+	font-size: 1.2rem;
+	font-weight: 950;
+	color: var(--aemet-text);
+}
+
+/* Nota */
+.aemet__note {
+	margin: 0;
+	color: var(--aemet-muted);
+	font-size: 1rem;
+}
+
+/* ==========
+   IMAGEN ISOBARAS
+   (evitar “hueco” gigante del rotate)
+   ========== */
+
+.aemet__image {
+	display: block;
+	margin: .5rem auto 0 auto;
+
+	/* Controlamos el hueco */
+	height: min(42vh, 340px);
+	width: auto;
+	max-width: 100%;
+
+	transform: rotate(90deg);
+	transform-origin: center;
+
+	border-radius: var(--radius-md, .75rem);
+	border: 1px solid var(--aemet-border);
+	box-shadow: 0 14px 30px rgba(0,0,0,.10);
+	background: #fff;
+}
+
+/* Responsive */
+@media (max-width: 640px){
+	.aemet__actions{
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.aemet__btn{
+		width: 100%;
+	}
+
+	.aemet__image{
+		height: min(38vh, 280px);
+	}
+
+	.aemet__temp-row{
+		grid-template-columns: 1fr;
+	}
+
+	.aemet__temp-minmax{
+		justify-content: flex-start;
+	}
+}
