@@ -4,6 +4,8 @@ services:
     container_name: ut7_web
     ports:
       - "8080:80"
+    environment:
+      - AEMET_API_KEY=${AEMET_API_KEY}
     volumes:
       - ./public:/var/www/html
       - ./src:/var/www/src
