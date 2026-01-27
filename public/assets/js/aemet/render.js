@@ -1,5 +1,22 @@
 import { clearContent } from "./state.js";
 
+
+
+function normalizePlaceName(place) {
+	const m = place.match(/^(.+?),\s*(Las|Los|La|El)$/i);
+	if (!m) return place;
+
+	const article = m[2].toLowerCase();
+	const pretty =
+		article === 'las' ? 'Las' :
+		article === 'los' ? 'Los' :
+		article === 'la'  ? 'La'  :
+		'El';
+
+	return `${pretty} ${m[1]}`;
+}
+
+
 export function renderAemet(dom, payload) {
 	clearContent(dom);
 
@@ -154,7 +171,7 @@ export function renderAemet(dom, payload) {
 		};
 
 		cleaned.forEach((line) => {
-			// Temperaturas
+
 			if (/^TEMPERATURAS\b/i.test(line)) {
 				flush();
 				blocks.push({ type: 'temps_title', text: line });
@@ -167,7 +184,6 @@ export function renderAemet(dom, payload) {
 				return;
 			}
 
-			// Omitimos lo que ya pintamos arriba como meta (para no duplicar tanto)
 			if (
 				(meta.place && line === meta.place) ||
 				rxIsland.test(line) ||
@@ -246,7 +262,7 @@ export function renderAemet(dom, payload) {
 				const match = item.text.match(/(.+?)\s+(\d+)\s+(\d+)\s*$/);
 
 				if (match) {
-					const place = match[1].replace(/\s*,\s*Las$/, '').trim();
+					const place = normalizePlaceName(match[1].trim());
 					const min = match[2];
 					const max = match[3];
 

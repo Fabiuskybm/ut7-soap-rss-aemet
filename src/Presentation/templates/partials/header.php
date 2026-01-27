@@ -1,15 +1,21 @@
 
 
 <header class="header">
-	<div class="header__inner">
-		<div class="header__brand">
-			<a class="header__brand-link" href="index.php?view=home">
-				<span class="header__brand-title">UT7</span>
-				<span class="header__brand-subtitle">SOAP · RSS · AEMET</span>
-			</a>
-		</div>
 
-		<nav class="header__nav" aria-label="Navegación principal">
+    <div class="header__inner container">
+        
+        <div class="header__brand">
+            <a class="header__brand-link" href="index.php?view=home">
+                <span class="header__brand-mark" aria-hidden="true">UT7</span>
+
+                <span class="header__brand-text">
+                    <span class="header__brand-title">Proyecto UT7</span>
+                    <span class="header__brand-subtitle">SOAP · RSS · AEMET</span>
+                </span>
+            </a>
+        </div>
+
+        <nav class="header__nav" aria-label="Navegación principal">
             <a
                 class="header__nav-link <?= $view === 'home' ? 'header__nav-link--active' : '' ?>"
                 href="index.php?view=home"
@@ -43,8 +49,8 @@
             </a>
         </nav>
 
-		<div class="header__meta" aria-label="Información del proyecto">
-			<span class="header__chip">2º DAW</span>
-		</div>
-	</div>
+        <div class="header__meta" aria-label="Información del proyecto">
+            <span class="header__chip">2º DAW</span>
+        </div>
+    </div>
 </header>

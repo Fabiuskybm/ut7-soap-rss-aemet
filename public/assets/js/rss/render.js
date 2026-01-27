@@ -1,7 +1,6 @@
 
 
 export function renderItems(container, items) {
-
     if (!container) return;
 
     if (!items?.length) {
@@ -12,14 +11,16 @@ export function renderItems(container, items) {
     container.innerHTML = items.map(it => `
         <article class="rss-card">
             ${it.imageUrl ? `<img class="rss-card__img" src="${escapeHtml(it.imageUrl)}" alt="">` : ''}
-            <h3 class="rss-card__title">${escapeHtml(it.title)}</h3>
-            ${it.pubDate ? `<p class="rss-card__date">${escapeHtml(it.pubDate)}</p>` : ''}
-            ${it.description ? `<p class="rss-card__desc">${escapeHtml(it.description)}</p>` : ''}
+            <div class="rss-card__body">
+                <h3 class="rss-card__title">${escapeHtml(it.title)}</h3>
+                ${it.pubDate ? `<p class="rss-card__date">${escapeHtml(it.pubDate)}</p>` : ''}
+                ${it.description ? `<p class="rss-card__desc">${escapeHtml(it.description)}</p>` : ''}
+            </div>
             <p class="rss-card__link">
-            <a href="${escapeAttr(it.link)}" target="_blank" rel="noopener noreferrer">Abrir noticia</a>
+                <a class="rss-card__btn" href="${escapeAttr(it.link)}" target="_blank" rel="noopener noreferrer">Ver</a>
             </p>
         </article>
-    `);
+    `).join('');
 }
 
 

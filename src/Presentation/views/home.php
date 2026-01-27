@@ -1,36 +1,131 @@
 
+
 <section class="home">
-    
-    <h2>Panel principal</h2>
-    <p>Selecciona un apartado del proyecto:</p>
+    <!-- Hero -->
+    <header class="home__hero">
+        <div class="home__badge">
+            <span class="home__badge-icon" aria-hidden="true">◆</span>
+            <span class="home__badge-text">Servicios y uso de APIs</span>
+        </div>
 
-    <ul>
-        <li>
-            <a href="index.php?view=modules">
-                <span class="home__icon">
-                    <svg height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 392.594 392.594" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#194F82;" d="M392.529,125.113c-0.776-4.202-3.103-7.111-6.982-8.857L200.206,43.594 c-2.521-1.034-5.43-1.034-7.952,0L6.913,116.256c-9.632,3.943-8.792,16.937,0,20.299l62.966,24.63v132.073 c0,4.461,2.78,8.469,6.982,10.15l115.459,45.253c2.651,1.487,5.301,1.487,7.952,0l115.459-45.253 c4.202-1.616,6.982-5.624,6.982-10.15V161.315l48.032-18.877v127.935c0,6.012,4.848,10.925,10.925,10.925 c6.012,0,10.925-4.848,10.925-10.925C392.529,270.309,392.594,125.501,392.529,125.113z M300.796,285.824L196.262,326.81 L91.729,285.824v-116.04l100.59,39.499c2.392,1.099,5.107,0.905,7.952,0l100.525-39.434V285.824z M196.262,187.432L40.787,126.406 l155.475-60.962l155.475,60.962L196.262,187.432z"></path> <path style="fill:#FFFFFF;" d="M200.206,209.283c-2.844,0.905-5.56,1.099-7.952,0l-100.59-39.499v116.04l104.533,40.986 l104.533-40.986v-116.04L200.206,209.283z"></path> <path style="fill:#56ACE0;" d="M113.515,220.079h47.838c6.012,0,10.925,4.848,10.925,10.925s-4.848,10.925-10.925,10.925h-47.838 l0,0v17.067l0,0h20.881c6.012,0,10.925,4.848,10.925,10.925c0,5.042-3.426,9.115-7.952,10.408l58.893,23.079l82.747-32.453v-92.574 l-78.739,30.901c-2.844,0.905-5.56,1.099-7.952,0l-78.804-30.901L113.515,220.079L113.515,220.079z"></path> <polygon style="fill:#FFC10D;" points="196.262,65.444 40.787,126.406 196.262,187.432 351.737,126.406 "></polygon> </g></svg>
-                </span>
+        <h1 class="home__title">Proyecto UT7</h1>
 
-                <span class="home__label">Módulos FP (SOAP)</span>
+        <p class="home__lead">
+            Implementación de servicios SOAP, consumo de feeds RSS y conexión con la API de AEMET
+            para obtener datos meteorológicos en tiempo real.
+        </p>
+    </header>
+
+    <!-- Grid cards -->
+    <section class="home__section">
+        <h2 class="home__section-title">Selecciona un apartado del proyecto</h2>
+
+        <div class="home__grid">
+            <a class="home__card card" href="index.php?view=modules">
+                <div class="home__card-icon home__card-icon--soap" aria-hidden="true">
+                    <!-- Placeholder (luego lo cambias por el icono definitivo) -->
+                    <span class="home__icon">
+                        <!-- tu SVG actual -->
+                        <svg viewBox="0 0 392.594 392.594" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="currentColor" d="M392.529,125.113c-0.776-4.202-3.103-7.111-6.982-8.857L200.206,43.594 c-2.521-1.034-5.43-1.034-7.952,0L6.913,116.256c-9.632,3.943-8.792,16.937,0,20.299l62.966,24.63v132.073 c0,4.461,2.78,8.469,6.982,10.15l115.459,45.253c2.651,1.487,5.301,1.487,7.952,0l115.459-45.253 c4.202-1.616,6.982-5.624,6.982-10.15V161.315l48.032-18.877v127.935c0,6.012,4.848,10.925,10.925,10.925 c6.012,0,10.925-4.848,10.925-10.925C392.529,270.309,392.594,125.501,392.529,125.113z M300.796,285.824L196.262,326.81 L91.729,285.824v-116.04l100.59,39.499c2.392,1.099,5.107,0.905,7.952,0l100.525-39.434V285.824z M196.262,187.432L40.787,126.406 l155.475-60.962l155.475,60.962L196.262,187.432z"></path>
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="home__card-head">
+                    <h3 class="home__card-title">Módulos FP (SOAP)</h3>
+                    <span class="home__card-arrow" aria-hidden="true">→</span>
+                </div>
+
+                <p class="home__card-desc">
+                    Consulta información de módulos de Formación Profesional mediante servicios SOAP.
+                    Incluye departamentos, nomenclaturas y detalles completos.
+                </p>
+
+                <div class="home__tags">
+                    <span class="home__tag">infoModulo</span>
+                    <span class="home__tag">infoDepartamentos</span>
+                    <span class="home__tag">infoNomenclaturas</span>
+                </div>
             </a>
-        </li>
-        <li>
-            <a href="index.php?view=rss">
-                <span class="home__icon">
-                    <svg viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>RSS-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-800.000000, -760.000000)" fill="#FF9A00"> <path d="M800.000471,797.714286 C800.000471,794.243 802.81487,791.428571 806.286118,791.428571 C809.757367,791.428571 812.571765,794.243 812.571765,797.714286 C812.571765,801.185571 809.757367,804 806.286118,804 C802.81487,804 800.000471,801.185571 800.000471,797.714286 Z M844,804 L835.619661,804 C835.619661,784.358714 819.641547,768.380429 800.000471,768.380429 L800.000471,760 C824.261497,760 844,779.738714 844,804 Z M829.333543,804 L820.953204,804 C820.953204,792.446857 811.553019,783.048143 800,783.048143 L800,774.666143 C816.174541,774.666143 829.333543,787.825286 829.333543,804 Z" id="RSS"> </path> </g> </g> </g></svg>
-                </span>
 
-                <span class="home__label">Noticias RSS</span>
-            </a>
-        </li>
-        <li>
-            <a href="index.php?view=aemet">
-                <span class="home__icon">
-                    <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M621.7 451.6m-129.5 0a129.5 129.5 0 1 0 259 0 129.5 129.5 0 1 0-259 0Z" fill="#F4CE26"></path><path d="M621.7 607.4c-85.9 0-155.8-69.9-155.8-155.8s69.9-155.8 155.8-155.8 155.8 69.9 155.8 155.8S707.6 607.4 621.7 607.4z m0-258.9c-56.8 0-103.1 46.2-103.1 103.1s46.3 103.1 103.1 103.1 103-46.3 103-103.2-46.2-103-103-103z" fill="#333333"></path><path d="M502.1 198c11.8-6.8 26.9-2.8 33.7 9l24.7 42.7c6.8 11.8 2.8 26.9-9 33.7-11.8 6.8-26.9 2.8-33.7-9l-24.7-42.7c-6.9-11.9-2.8-26.9 9-33.7zM807.8 406.4c3.5 13.2 17 21 30.2 17.4l47.6-12.8c13.2-3.5 21-17 17.4-30.2-3.5-13.2-17-21-30.2-17.4l-47.6 12.8c-13.1 3.5-20.9 17-17.4 30.2zM794.6 517.3c-3.5 13.2 4.3 26.7 17.4 30.2l47.6 12.8c13.2 3.5 26.7-4.3 30.2-17.4 3.5-13.2-4.3-26.7-17.4-30.2l-47.6-12.8c-13.1-3.5-26.6 4.3-30.2 17.4zM665.7 161.8c13.6 0 24.7 11 24.7 24.7v49.3c0 13.6-11 24.7-24.7 24.7-13.6 0-24.7-11-24.7-24.7v-49.3c0-13.6 11-24.7 24.7-24.7zM832.8 231.3c-9.6-9.6-25.2-9.6-34.9 0L763 266.2c-9.6 9.6-9.6 25.2 0 34.9 9.6 9.6 25.2 9.6 34.9 0l34.9-34.9c9.7-9.7 9.7-25.3 0-34.9z" fill="#333333"></path><path d="M264.5 740.8c-2.2 0.2-4.3 0.4-6.5 0.5-60.5 3.4-111-49.7-111-111s49.7-111 111-111c4.2 0 8.4 0.2 12.5 0.7-0.1-2.3-0.1-4.6-0.1-6.9 0-85.1 69-154.1 154.1-154.1 75.2 0 137.8 53.8 151.4 125 6.9-1.1 14-1.7 21.2-1.7 71.5 0 129.5 58 129.5 129.5-0.2 45.7-23.8 85.9-59.6 108.9-20.2 13-44.2 21.3-70 20.5-3.5-0.1-6.9-0.3-10.3-0.7-1.1 0.1-2.3 0.1-3.4 0.1H264.5z" fill="#FFFFFF"></path><path d="M252.4 767.8c-32.4 0-63.3-12.5-87.9-35.8-27.9-26.4-43.9-63.5-43.9-101.7 0-71.3 54.7-130.2 124.3-136.7 9.8-90.3 86.5-160.9 179.4-160.9 78.4 0 147 50.6 171.2 123.3h1.4c86 0 155.9 69.9 155.9 155.8 0 53.3-26.7 102.3-71.5 131.1-26.5 17.1-56.1 25.6-85.1 24.7-3.4-0.1-6.7-0.3-10-0.6-1 0-2 0.1-3 0.1H265.8c-2.1 0.2-4.2 0.4-6.3 0.5-2.4 0.1-4.7 0.2-7.1 0.2z m5.5-222.1c-46.6 0-84.6 38-84.6 84.6 0 23.8 10 46.9 27.4 63.4 15.7 14.9 35.7 22.5 55.7 21.2 1.7-0.1 3.5-0.2 5.2-0.4l2.8-0.2h324.9c2.8 0.3 5.6 0.5 8.4 0.6 23.2 0.8 42.8-8.5 54.9-16.4 29.8-19 47.5-51.4 47.5-86.7 0-56.8-46.3-103.1-103.1-103.1-5.7 0-11.4 0.5-16.9 1.4l-25.4 4.2-4.8-25.3c-11.5-60-64.2-103.6-125.5-103.6-70.5 0-127.8 57.3-127.8 127.8 0 1.9 0 3.8 0.1 5.7l1.4 30.9-30.7-3.5c-3.1-0.4-6.2-0.6-9.5-0.6z" fill="#333333"></path></g></svg>
-                </span>
+            <a class="home__card card" href="index.php?view=rss">
+                <div class="home__card-icon home__card-icon--rss" aria-hidden="true">
+                    <span class="home__icon">
+                        <!-- tu SVG actual -->
+                        <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="currentColor" d="M6.286 44A6.286 6.286 0 1 0 6.286 31.428 6.286 6.286 0 0 0 6.286 44ZM44 44h-8.38C35.62 24.358 19.642 8.38.001 8.38V0C24.261 0 44 19.739 44 44Zm-14.666 0h-8.38C20.954 32.447 11.553 23.048 0 23.048v-8.382C16.175 14.666 29.334 27.825 29.334 44Z"></path>
+                        </svg>
+                    </span>
+                </div>
 
-                <span class="home__label">Predicción meteorológica (AEMET)</span>
+                <div class="home__card-head">
+                    <h3 class="home__card-title">Noticias RSS</h3>
+                    <span class="home__card-arrow" aria-hidden="true">→</span>
+                </div>
+
+                <p class="home__card-desc">
+                    Recuperación de noticias diarias de EuropaPress mediante canal RSS.
+                    Visualiza titulares, descripciones y enlaces directos.
+                </p>
+
+                <div class="home__tags">
+                    <span class="home__tag">Feed EuropaPress</span>
+                    <span class="home__tag">Noticias diarias</span>
+                    <span class="home__tag">Enlaces directos</span>
+                </div>
             </a>
-        </li>
-    </ul>
+
+            <a class="home__card card" href="index.php?view=aemet">
+                <div class="home__card-icon home__card-icon--aemet" aria-hidden="true">
+                    <span class="home__icon">
+                        <!-- tu SVG actual -->
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="currentColor" d="M621.7 607.4c-85.9 0-155.8-69.9-155.8-155.8s69.9-155.8 155.8-155.8 155.8 69.9 155.8 155.8S707.6 607.4 621.7 607.4z"></path>
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="home__card-head">
+                    <h3 class="home__card-title">AEMET - Meteorología</h3>
+                    <span class="home__card-arrow" aria-hidden="true">→</span>
+                </div>
+
+                <p class="home__card-desc">
+                    Accede a datos meteorológicos en tiempo real de la API de AEMET.
+                    Mapas de isobaras y predicciones para Canarias.
+                </p>
+
+                <div class="home__tags">
+                    <span class="home__tag">Mapa Isobaras</span>
+                    <span class="home__tag">Predicción Canarias</span>
+                    <span class="home__tag">Predicción Gran Canaria</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Info cards -->
+    <section class="home__info">
+        <div class="home__info-card card">
+            <h3 class="home__info-title">Servicios SOAP</h3>
+            <p class="home__info-text">
+                Comunicación mediante protocolo SOAP para consultar datos de módulos FP desde una base de datos MySQL.
+            </p>
+        </div>
+
+        <div class="home__info-card card">
+            <h3 class="home__info-title">Canal RSS</h3>
+            <p class="home__info-text">
+                Parseo y visualización de feeds RSS de EuropaPress con noticias actualizadas en tiempo real.
+            </p>
+        </div>
+
+        <div class="home__info-card card">
+            <h3 class="home__info-title">API REST AEMET</h3>
+            <p class="home__info-text">
+                Conexión con la API OpenData de AEMET para obtener mapas y predicciones meteorológicas.
+            </p>
+        </div>
+    </section>
 </section>

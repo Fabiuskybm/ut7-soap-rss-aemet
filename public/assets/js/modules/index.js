@@ -51,6 +51,18 @@ export async function initModules() {
 
 	dom.departments.addEventListener("click", async (e) => {
 
+		// Toggle accordion (departamentos)
+		const deptTrigger = e.target.closest("[data-department-trigger]");
+
+		if (deptTrigger) {
+			const dept = deptTrigger.closest(".modules__department");
+			if (!dept) return;
+
+			dept.classList.toggle("is-open");
+			return;
+		}
+
+
 		const btn = e.target.closest("[data-module-btn]");
 		if (!btn) return;
 
