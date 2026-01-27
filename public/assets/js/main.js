@@ -10,12 +10,17 @@ import { initModules } from "./modules/index.js";
 
 
 (() => {
+
+	const routes = [
+		{ cls: "page--modules", run: () => initModules() },
+		{ cls: "page--aemet", run: () => import("./aemet/index.js").then(m => m.initAemet()) },
+		{ cls: "page--rss", run: () => import("./rss/index.js").then(m => m.initRss()) },
+	];
+
 	const body = document.body;
 
-	if (body.classList.contains("page--modules")) { initModules(); }
-
-	if (body.classList.contains("page--aemet")) {
-		import("./aemet/index.js").then(m => m.initAemet());
+	for (const r of routes) {
+		if (body.classList.contains(r.cls)) r.run();
 	}
-	
+
 })();
