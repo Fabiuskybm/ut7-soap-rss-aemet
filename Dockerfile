@@ -3,9 +3,12 @@ FROM php:8.2-apache
 
 # Paquetes necesarios para instalar extensiones
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
     libxml2-dev \
+    libicu-dev \
     unzip \
-  && docker-php-ext-install soap pdo_mysql \
+  && docker-php-ext-install soap pdo_mysql intl \
+  && update-ca-certificates \
   && a2enmod rewrite headers \
   && rm -rf /var/lib/apt/lists/*
 
