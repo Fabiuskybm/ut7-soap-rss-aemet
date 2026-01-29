@@ -35,9 +35,6 @@ export function renderStaticIcons(dom) {
     const panelIcon = document.querySelector(".modules__panel--list .modules__panel-icon");
     if (panelIcon) panelIcon.innerHTML = ICONS.mortarBoard;
 
-    const emptyIcon = document.querySelector(".modules__empty-icon");
-    if (emptyIcon) emptyIcon.innerHTML = ICONS.book;
-
     if (dom?.close) dom.close.innerHTML = ICONS.close;
 }
 

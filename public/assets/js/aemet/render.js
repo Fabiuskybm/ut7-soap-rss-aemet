@@ -1,5 +1,22 @@
 import { clearContent } from "./state.js";
 
+
+
+function normalizePlaceName(place) {
+	const m = place.match(/^(.+?),\s*(Las|Los|La|El)$/i);
+	if (!m) return place;
+
+	const article = m[2].toLowerCase();
+	const pretty =
+		article === 'las' ? 'Las' :
+		article === 'los' ? 'Los' :
+		article === 'la'  ? 'La'  :
+		'El';
+
+	return `${pretty} ${m[1]}`;
+}
+
+
 export function renderAemet(dom, payload) {
 	clearContent(dom);
 
@@ -41,9 +58,6 @@ export function renderAemet(dom, payload) {
 		const body = document.createElement('div');
 		body.className = 'aemet__text';
 
-		// =========================
-		// 1) Meta (chips) flexible
-		// =========================
 		const meta = {
 			place: null,
 			date: null,
@@ -57,7 +71,7 @@ export function renderAemet(dom, payload) {
 			.filter(Boolean)
 			.filter((line) => line !== 'AGENCIA ESTATAL DE METEOROLOGÍA');
 
-		// Detectores (muy tolerantes)
+
 		const rxIsland = /^PREDICCI[ÓO]N\s+PARA\s+LA\s+ISLA\s+DE\s+(.+)$/i;
 		const rxGeneral = /^PREDICCI[ÓO]N\s+GENERAL\s+PARA\s+LA\s+COMUNIDAD\s+DE\s+(.+)$/i;
 		const rxDia = /^D[ÍI]A\s+(.+?)\s+A\s+LAS\s+(\d{1,2}:\d{2})/i;
@@ -88,13 +102,12 @@ export function renderAemet(dom, payload) {
 				meta.valid = m[1].trim();
 			}
 
-			// Lugar en una línea suelta (ej: "GRAN CANARIA")
 			if (!meta.place && line.length <= 28 && line === line.toUpperCase()) {
 				meta.place = line.trim();
 			}
 		});
 
-		// Render chips si hay algo
+
 		if (meta.subtitle || meta.place || meta.date || meta.time || meta.valid) {
 			const metaWrap = document.createElement('div');
 			metaWrap.className = 'aemet__meta';
@@ -133,9 +146,6 @@ export function renderAemet(dom, payload) {
 			body.appendChild(metaWrap);
 		}
 
-		// =========================
-		// 2) Bloques: secciones + párrafos + temperaturas
-		// =========================
 
 		const isSectionTitle = (s) =>
 			/^([A-Z]\.-\s)/.test(s) || /^PREDICCI[ÓO]N\b/i.test(s) || /^D[ÍI]A\b/i.test(s);
@@ -154,8 +164,8 @@ export function renderAemet(dom, payload) {
 		};
 
 		cleaned.forEach((line) => {
-			// Temperaturas
-			if (/^TEMPERATURAS\b/i.test(line)) {
+
+			if (/^TEMPERATURAS MÍNIMAS Y MÁXIMAS PREVISTAS\b/i.test(line)) {
 				flush();
 				blocks.push({ type: 'temps_title', text: line });
 				inTemps = true;
@@ -167,7 +177,6 @@ export function renderAemet(dom, payload) {
 				return;
 			}
 
-			// Omitimos lo que ya pintamos arriba como meta (para no duplicar tanto)
 			if (
 				(meta.place && line === meta.place) ||
 				rxIsland.test(line) ||
@@ -189,7 +198,7 @@ export function renderAemet(dom, payload) {
 
 		flush();
 
-		// Render fallback si no hay nada
+
 		if (blocks.length === 0) {
 			const p = document.createElement('p');
 			p.className = 'aemet__note';
@@ -199,7 +208,6 @@ export function renderAemet(dom, payload) {
 			return;
 		}
 
-		// Render normal + tarjeta temperaturas
 		let tempsCard = null;
 		let tempsList = null;
 
@@ -242,11 +250,10 @@ export function renderAemet(dom, payload) {
 				const row = document.createElement('div');
 				row.className = 'aemet__temp-row';
 
-				// Ej: "Palmas de Gran Canaria, Las   14  22"
 				const match = item.text.match(/(.+?)\s+(\d+)\s+(\d+)\s*$/);
 
 				if (match) {
-					const place = match[1].replace(/\s*,\s*Las$/, '').trim();
+					const place = normalizePlaceName(match[1].trim());
 					const min = match[2];
 					const max = match[3];
 
@@ -270,8 +277,8 @@ export function renderAemet(dom, payload) {
 
 					row.appendChild(placeEl);
 					row.appendChild(mins);
+
 				} else {
-					// fallback
 					row.textContent = item.text;
 				}
 
@@ -279,7 +286,6 @@ export function renderAemet(dom, payload) {
 				return;
 			}
 
-			// párrafos normales
 			const p = document.createElement('p');
 			p.className = 'aemet__paragraph';
 			p.textContent = item.text;
@@ -291,7 +297,6 @@ export function renderAemet(dom, payload) {
 		return;
 	}
 
-	// Fallback
 	const p = document.createElement('p');
 	p.className = 'aemet__note';
 	p.textContent = payload?.note || 'Sin datos.';

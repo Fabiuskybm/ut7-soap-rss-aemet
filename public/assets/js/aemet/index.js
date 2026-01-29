@@ -5,35 +5,39 @@ import { setStatus, clearContent } from "./state.js";
 import { renderAemet } from "./render.js";
 
 
-export function initAemet() {
 
+export function initAemet() {
     const res = getAemetDom();
     if (!res.ok) return;
 
-    const {  dom } = res;
+    const { dom } = res;
 
-    dom.buttons.forEach((btn) => {
+    dom.root.addEventListener("click", async (e) => {
+        const btn = e.target.closest("[data-aemet-action]");
+        if (!btn) return;
 
-        btn.addEventListener('click', async () => {
+        const action = btn.dataset.aemetAction;
+        if (!action) return;
 
-            const action = btn.dataset.aemetAction;
+        dom.buttons.forEach((b) => (b.disabled = true));
 
-            clearContent(dom);
-            setStatus(dom, { text: 'Cargando...', visible: true });
+        clearContent(dom);
+        setStatus(dom, { text: "Cargando...", visible: true, type: "info" });
 
-            try {
-                const data = await fetchAemet(action);
-                setStatus(dom, { visible: false });
-                renderAemet(dom, data);
+        try {
+            const data = await fetchAemet(action);
+            setStatus(dom, { visible: false });
+            renderAemet(dom, data);
 
-            } catch (e) {
-                setStatus(dom, { 
-                    text: e.message || 'Error', 
-                    type: 'error', 
-                    visible: true 
-                });
-            }
-
-        });
+        } catch (err) {
+            setStatus(dom, {
+            text: err?.message || "Error",
+            type: "error",
+            visible: true,
+            });
+            
+        } finally {
+            dom.buttons.forEach((b) => (b.disabled = false));
+        }
     });
 }

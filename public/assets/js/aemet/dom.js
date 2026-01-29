@@ -3,14 +3,15 @@ export const $ = (sel, root = document) => root.querySelector(sel);
 
 
 export function getAemetDom() {
-
     const root = $(".aemet");
-    const status = $("[data-aemet-status]");
-    const content = $("[data-aemet-content]");
-    const buttons = root ? root.querySelectorAll("[data-aemet-action]") : [];
+    if (!root) return { ok: false, error: "No se encontró .aemet" };
 
-    if (!root || !status || !content) {
-        return { ok: false, error: "DOM AEMET incompleto (faltan data-aemet-*)" };
+    const status = $("[data-aemet-status]", root);
+    const content = $("[data-aemet-content]", root);
+    const buttons = root.querySelectorAll("[data-aemet-action]");
+
+    if (!status || !content) {
+    return { ok: false, error: "DOM AEMET incompleto (faltan data-aemet-*)" };
     }
 
     return { ok: true, dom: { root, status, content, buttons } };
